@@ -3,6 +3,7 @@ package io.github.thiminhnhut.loginatm
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import io.github.thiminhnhut.loginatm.model.Account
 import io.github.thiminhnhut.loginatm.model.AccountDB
 import io.github.thiminhnhut.loginatm.view.FragmentLogin
 import io.github.thiminhnhut.loginatm.view.FragmentStatusLogin
@@ -27,9 +28,9 @@ class MainActivity : AppCompatActivity() {
                 override fun onClickLogin(sender: Any, accountNo: String, password: String) {
                     val account = AccountDB.newInstance().getAccount()
                     if (account.checkLogin(accountNo, password)) {
-                        statusLogin(true)
+                        statusLogin(true, account)
                     } else {
-                        statusLogin(false)
+                        statusLogin(false, null)
                     }
                 }
             })
@@ -42,12 +43,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun statusLogin(isLoginSuccess: Boolean) {
+    private fun statusLogin(isLoginSuccess: Boolean, account: Account?) {
         val fragmentStatusLogin = FragmentStatusLogin.newInstance(object : FragmentStatusLogin.OnEvent {
             override fun onClick(sender: Any) {
                 fragmentLogin.resetLogin()
             }
-        }, isLoginSuccess)
+        }, isLoginSuccess, account)
         fragmentStatusLogin.show(supportFragmentManager, "statusLogin")
     }
 }
