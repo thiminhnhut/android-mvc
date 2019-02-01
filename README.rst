@@ -30,4 +30,4 @@ Giới thiệu
 Ví dụ
 =====
 
-* Examples: `Login to the ATM <https://github.com/thiminhnhut/mvc-android/tree/master/LoginATM>`_
+* Examples: `Login to the ATM <https://github.com/thiminhnhut/android-mvc/tree/master/LoginATM>`_
